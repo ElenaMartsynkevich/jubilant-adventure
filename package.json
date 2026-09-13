@@ -26,6 +26,7 @@
         "test:e2e:headed": "playwright test --config=playwright/playwright.config.ts --headed",
         "test:e2e:report": "playwright show-report playwright/playwright-report",
         "type-check:e2e": "tsc --noEmit -p playwright/tsconfig.json",
+        "test:unit": "node --test",
         "lint": "biome lint .",
         "lint:fix": "biome lint --write .",
         "type-check": "tsc --noEmit",
