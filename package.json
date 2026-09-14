@@ -3,6 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "description": "TypeScript exercises and a small HTTP server.",
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Mkots/jubilant-adventure.git"
@@ -17,34 +21,55 @@
         "npm": ">=11.0.0"
     },
     "scripts": {
-        "start": "tsx src/index.ts",
-        "test": "vitest run",
-        "test:watch": "vitest",
-        "test:coverage": "vitest run --coverage",
-        "test:e2e": "playwright test --config=playwright/playwright.config.ts",
-        "test:e2e:ui": "playwright test --config=playwright/playwright.config.ts --ui",
-        "test:e2e:headed": "playwright test --config=playwright/playwright.config.ts --headed",
-        "test:e2e:report": "playwright show-report playwright/playwright-report",
-        "type-check:e2e": "tsc --noEmit -p playwright/tsconfig.json",
+
         "test:unit": "node --test",
+        "start": "npm run start --workspace=@jubilant-adventure/api",
+        "dev:web": "npm run dev --workspace=@jubilant-adventure/web",
+        "storybook": "npm run storybook --workspace=@jubilant-adventure/web",
+        "storybook:visual": "npm run storybook:visual --workspace=@jubilant-adventure/web",
+        "build:storybook": "npm run build:storybook --workspace=@jubilant-adventure/web",
+        "test:storybook": "npm run test:storybook --workspace=@jubilant-adventure/web",
+        "test:mock-lab": "npm run test:mock-lab --workspace=@jubilant-adventure/web",
+        "build:web": "npm run build --workspace=@jubilant-adventure/web",
+        "type-check:web": "npm run type-check --workspace=@jubilant-adventure/web",
+        "test": "npm run test --workspaces --if-present",
+        "test:watch": "npm run test:watch --workspaces --if-present",
+        "test:coverage": "npm run test:coverage --workspaces --if-present",
+        "test:e2e": "playwright test --config=tests/e2e/playwright.config.ts",
+        "test:e2e:ui": "playwright test --config=tests/e2e/playwright.config.ts --ui",
+        "test:e2e:headed": "playwright test --config=tests/e2e/playwright.config.ts --headed",
+        "test:e2e:report": "playwright show-report tests/e2e/playwright-report",
+        "test:visual": "playwright test --config=tests/visual/playwright.config.ts",
+        "test:visual:update": "playwright test --config=tests/visual/playwright.config.ts --update-snapshots",
+        "test:api": "vitest run --config tests/api/vitest.config.mts",
+        "test:schemathesis": "node scripts/run-schemathesis.mjs",
+        "type-check:e2e": "tsc --noEmit -p tests/e2e/tsconfig.json",
+        "type-check:api": "tsc --noEmit -p tests/api/tsconfig.json",
         "lint": "biome lint .",
         "lint:fix": "biome lint --write .",
-        "type-check": "tsc --noEmit",
+        "type-check": "npm run type-check --workspaces --if-present",
+        "generate:api-client": "npm run export:openapi --workspace=@jubilant-adventure/api && node scripts/generate-api-client.mjs",
+        "check:api-client": "npm run generate:api-client && git diff --exit-code -- packages/api-client/src/schema.ts packages/api-client/src/client.ts",
         "format": "biome format --write .",
         "format:check": "biome format .",
         "prepare": "husky",
         "ci:biome": "biome ci .",
-        "ci:coverage": "vitest --reporter=junit --outputFile=test-report.junit.xml --coverage",
-        "ci": "npm run type-check && npm run ci:biome && npm run ci:coverage"
+        "ci:coverage": "npm run ci:coverage --workspaces --if-present",
+        "ci": "npm run type-check && npm run type-check:e2e && npm run type-check:api && npm run ci:biome && npm run ci:coverage"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.5.12",
         "@playwright/test": "^1.63.0",
-        "@types/node": "^24.13.3",
-        "@vitest/coverage-v8": "^5.0.0",
+        "@types/node": "^26.4.1",
+        "@vitest/coverage-v8": "^4.1.11",
         "husky": "^9.1.7",
         "tsx": "^4.23.13",
         "typescript": "^7.0.2",
-        "vitest": "^5.0.0"
+        "vitest": "^4.1.11"
+    },
+    "msw": {
+        "workerDirectory": [
+            "apps/web/public"
+        ]
     }
 }

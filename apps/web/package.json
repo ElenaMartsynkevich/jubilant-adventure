@@ -1,0 +1,47 @@
+{
+    "name": "@jubilant-adventure/web",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "type-check": "tsc --noEmit",
+        "preview": "vite preview",
+        "test": "vitest run --config vitest.config.mts",
+        "test:watch": "vitest --config vitest.config.mts",
+        "test:coverage": "vitest run --config vitest.config.mts --coverage",
+        "test:mock-lab": "vitest run --config vitest.mock-lab.config.mts",
+        "storybook": "storybook dev -p 6006",
+        "storybook:visual": "storybook dev --ci -p 6006",
+        "build:storybook": "storybook build",
+        "test:storybook": "vitest run --config vitest.storybook.config.mts --project=storybook"
+    },
+    "dependencies": {
+        "@jubilant-adventure/api-client": "0.1.0",
+        "@reduxjs/toolkit": "latest",
+        "react": "latest",
+        "react-dom": "latest",
+        "react-redux": "latest",
+        "react-router-dom": "latest"
+    },
+    "devDependencies": {
+        "@storybook/addon-a11y": "^10.6.0",
+        "@storybook/addon-vitest": "^10.6.0",
+        "@storybook/react-vite": "^10.6.0",
+        "@testing-library/jest-dom": "^7.0.1",
+        "@testing-library/react": "^16.3.3",
+        "@testing-library/user-event": "^14.6.7",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@vitejs/plugin-react": "latest",
+        "@vitest/browser": "^4.1.11",
+        "@vitest/browser-playwright": "^4.1.11",
+        "jsdom": "^30.0.1",
+        "miragejs": "^0.1.48",
+        "msw": "^2.15.0",
+        "msw-storybook-addon": "^3.0.0",
+        "storybook": "^10.6.0",
+        "vite": "latest"
+    }
+}

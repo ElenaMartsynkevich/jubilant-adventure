@@ -17,15 +17,22 @@ export default defineConfig({
             },
             exclude: [
                 'node_modules/**',
-                'playwright/**',
-                'src/index.ts',
-                'src/routes/routerTypes.ts'
+                'tests/e2e/**',
+                'apps/api/src/index.ts',
+                'apps/api/src/routes/routerTypes.ts',
             ],
         },
         include: [
             '**/__tests__/**/*.test.(ts|js)',
             '**/?(*.)+(spec|test).(ts|js)',
         ],
-        exclude: ['node_modules/**', 'playwright/**', 'src/test-data/**'],
+
+        exclude: [
+            'node_modules/**',
+            'tests/e2e/**',
+            'apps/web/src/testing/mock-lab/**',
+            'src/test-data/**'
+        ],
+
     },
 });
