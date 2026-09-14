@@ -19,13 +19,13 @@ export default defineConfig({
                 'node_modules/**',
                 'playwright/**',
                 'src/index.ts',
-                'src/routes/routerTypes.ts',
+                'src/routes/routerTypes.ts'
             ],
         },
         include: [
             '**/__tests__/**/*.test.(ts|js)',
             '**/?(*.)+(spec|test).(ts|js)',
         ],
-        exclude: ['node_modules/**', 'playwright/**'],
+        exclude: ['node_modules/**', 'playwright/**', 'src/test-data/**'],
     },
 });
