@@ -26,10 +26,13 @@ export default defineConfig({
             '**/__tests__/**/*.test.(ts|js)',
             '**/?(*.)+(spec|test).(ts|js)',
         ],
+
         exclude: [
             'node_modules/**',
             'tests/e2e/**',
             'apps/web/src/testing/mock-lab/**',
+            'src/test-data/**'
         ],
+
     },
 });
