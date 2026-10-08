@@ -26,13 +26,21 @@ npm run type-check    # run TypeScript checks
 npm run ci            # run all CI checks locally
 npm run format        # format supported files
 npm run lint          # run Biome lint checks
+npm run observability:up # start the local metrics/traces lab
+npm run sonar:validate-config # validate Sonar configuration without credentials
 ```
+
+See [`docs/observability.md`](./docs/observability.md) for Prometheus, Grafana,
+Tempo, correlation IDs, and trace smoke checks. Error tracking and explicit
+source-map upload are documented in [`docs/error-tracking.md`](./docs/error-tracking.md).
+SonarQube Cloud and the optional local Community Build are covered in
+[`docs/sonarqube.md`](./docs/sonarqube.md).
 
 ### 4. Run the Playwright E2E example
 
-The browser-based example is isolated in [`playwright/`](./playwright/). It
+The browser-based example is isolated in [`tests/e2e/`](./tests/e2e/). It
 tests the public Playwright documentation site in Chromium at desktop and
-mobile resolutions. See [`playwright/README.md`](./playwright/README.md) for
+mobile resolutions. See [`tests/e2e/README.md`](./tests/e2e/README.md) for
 setup, commands, fixtures, page objects, and CI guidance.
 
 ```bash
@@ -42,10 +50,13 @@ npm run test:e2e
 
 ## Project structure
 
-- `src/utils` contains the standalone exercises.
-- `src/routes` contains the HTTP route definitions.
-- `src/server.ts` creates the HTTP server and is covered by integration tests.
-- `__tests__` contains unit and server tests.
+- `apps/api/src` contains the HTTP server, routes, and entrypoint.
+- `apps/api/__tests__` contains the API integration tests.
+- `packages/exercises/src` contains the standalone exercises.
+- `packages/exercises/__tests__` contains the exercise unit tests.
+- `tests/e2e` contains the Playwright project, fixtures, page objects, and tests.
+- `apps/web`, `packages/api-client`, and `packages/test-data` are reserved for
+  future workspaces.
 
 The server exposes `/sample`, `/sample/hello`, and returns a JSON `404` response for unknown routes.
 
