@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "description": "TypeScript exercises and a small HTTP server.",
+    "type": "module",
     "workspaces": [
         "apps/*",
         "packages/*"
