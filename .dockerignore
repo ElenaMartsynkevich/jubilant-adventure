@@ -1,0 +1,10 @@
+.git
+.github
+artifacts
+coverage
+node_modules
+docker-data
+tests/e2e/playwright-report
+tests/e2e/test-results
+tests/visual/playwright-report
+tests/visual/test-results
