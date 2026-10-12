@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+
 import {
     buildMany,
     buildUser,
@@ -16,4 +17,3 @@ test('index.js re-exports all public API', () => {
     assert.equal(typeof TestUser, 'function');
 
     // TestUser это класс, а typeof класса тоже 'function'
-});
