@@ -1,7 +1,19 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { placeholder } from './index.js';
 
-test('placeholder returns true', () => {
-    assert.equal(placeholder(), true);
-});
+import {
+    buildMany,
+    buildUser,
+    formatAmount,
+    parseAmount,
+    TestUser,
+} from './index.js';
+
+test('index.js re-exports all public API', () => {
+    assert.equal(typeof buildUser, 'function');
+    assert.equal(typeof buildMany, 'function');
+    assert.equal(typeof parseAmount, 'function');
+    assert.equal(typeof formatAmount, 'function');
+    assert.equal(typeof TestUser, 'function');
+
+    // TestUser это класс, а typeof класса тоже 'function'
