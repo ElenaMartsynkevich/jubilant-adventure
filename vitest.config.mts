@@ -19,13 +19,20 @@ export default defineConfig({
                 'node_modules/**',
                 'tests/e2e/**',
                 'apps/api/src/index.ts',
-                'apps/api/src/routes/routerTypes.ts'
+                'apps/api/src/routes/routerTypes.ts',
             ],
         },
         include: [
             '**/__tests__/**/*.test.(ts|js)',
             '**/?(*.)+(spec|test).(ts|js)',
         ],
-        exclude: ['node_modules/**', 'playwright/**'],
+
+        exclude: [
+            'node_modules/**',
+            'tests/e2e/**',
+            'apps/web/src/testing/mock-lab/**',
+            'src/test-data/**'
+        ],
+
     },
 });
