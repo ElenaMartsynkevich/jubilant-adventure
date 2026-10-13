@@ -17,4 +17,4 @@ test('index.js re-exports all public API', () => {
     assert.equal(typeof TestUser, 'function');
 
     // TestUser это класс, а typeof класса тоже 'function'
-    });
+});
