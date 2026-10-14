@@ -31,8 +31,7 @@ export default defineConfig({
             'node_modules/**',
             'tests/e2e/**',
             'apps/web/src/testing/mock-lab/**',
-            'src/test-data/**'
+            'src/test-data/**',
         ],
-
     },
 });
