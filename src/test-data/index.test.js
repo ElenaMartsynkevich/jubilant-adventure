@@ -6,7 +6,9 @@ import {
     buildUser,
     formatAmount,
     parseAmount,
+    retry,
     TestUser,
+    waitUntil,
 } from './index.js';
 
 test('index.js re-exports all public API', () => {
@@ -15,6 +17,6 @@ test('index.js re-exports all public API', () => {
     assert.equal(typeof parseAmount, 'function');
     assert.equal(typeof formatAmount, 'function');
     assert.equal(typeof TestUser, 'function');
-
-    // TestUser это класс, а typeof класса тоже 'function'
+    assert.equal(typeof retry, 'function');
+    assert.equal(typeof waitUntil, 'function');
 });
