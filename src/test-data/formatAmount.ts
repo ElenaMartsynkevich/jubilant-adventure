@@ -1,5 +1,6 @@
-export function formatAmount(value, currency) {
-    let symbol;
+export type Currency = 'EUR' | 'USD';
+export function formatAmount(value: number, currency: Currency) {
+    let symbol: string;
     const [integerPart, decimalPart] = value.toFixed(2).split('.');
     const groupedInteger = integerPart.replace(
         /\B(?=(\d{3})+(?!\d))/g,

@@ -16,5 +16,6 @@ test('formatAmount works with parseAmount', () => {
 });
 
 test('formatAmount throws on garbage input', () => {
+    // @ts-expect-error: runtime guard for callers that bypass the type system
     assert.throws(() => formatAmount(100, 'GBP'), /can't recognize currency/);
 });

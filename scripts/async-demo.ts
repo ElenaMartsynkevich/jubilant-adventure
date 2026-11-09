@@ -1,9 +1,11 @@
 import { setTimeout as sleep } from 'node:timers/promises';
+import type { User } from '../src/test-data/buildUser.js';
 import { buildMany, buildUser } from '../src/test-data/index.js';
 
 const users = buildMany(5, buildUser);
+type BalanceResult = { username: string; balance: number };
 
-async function fetchBalance(user) {
+async function fetchBalance(user: User): Promise<BalanceResult> {
     await sleep(200);
 
     return {
@@ -11,9 +13,9 @@ async function fetchBalance(user) {
         balance: 100,
     };
 }
-
-const sequentialResults = [];
+const sequentialResults: { username: string; balance: number }[] = [];
 const startSequential = performance.now();
+
 for (const user of users) {
     sequentialResults.push(await fetchBalance(user));
 }
