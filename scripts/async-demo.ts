@@ -13,7 +13,7 @@ async function fetchBalance(user: User): Promise<BalanceResult> {
         balance: 100,
     };
 }
-const sequentialResults: { username: string; balance: number }[] = [];
+const sequentialResults: Array<BalanceResult> = [];
 const startSequential = performance.now();
 
 for (const user of users) {
@@ -22,8 +22,8 @@ for (const user of users) {
 
 const sequentialTime = performance.now() - startSequential;
 
-process.stdout.write(`Sequential: ${Math.round(sequentialTime)} ms\n`);
-process.stdout.write(`${JSON.stringify(sequentialResults, null, 2)}\n`);
+console.log(`Sequential: ${Math.round(sequentialTime)} ms`);
+console.log(JSON.stringify(sequentialResults, null, 2));
 
 const startParallel = performance.now();
 
@@ -33,5 +33,5 @@ const parallelResults = await Promise.all(
 
 const parallelTime = performance.now() - startParallel;
 
-process.stdout.write(`Parallel: ${Math.round(parallelTime)} ms\n`);
-process.stdout.write(`${JSON.stringify(parallelResults, null, 2)}\n`);
+console.log(`Parallel: ${Math.round(parallelTime)} ms`);
+console.log(JSON.stringify(parallelResults, null, 2));

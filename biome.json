@@ -38,7 +38,12 @@
     },
     "overrides": [
         {
-            "includes": ["**/__tests__/**", "**/*.test.ts", "**/*.spec.ts"],
+            "includes": [
+                "**/__tests__/**",
+                "**/*.test.ts",
+                "**/*.spec.ts",
+                "scripts/async-demo.ts"
+            ],
             "linter": {
                 "rules": {
                     "suspicious": {
