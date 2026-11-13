@@ -23,6 +23,8 @@ npm start             # start the HTTP server on port 3000
 npm test              # run the test suite
 npm run test:coverage # run tests with coverage
 npm run type-check    # run TypeScript checks
+npm run typecheck     # type-check the src/test-data module (tsc --noEmit, strict)
+npm run test:unit     # run src/test-data .ts tests via tsx
 npm run ci            # run all CI checks locally
 npm run format        # format supported files
 npm run lint          # run Biome lint checks
@@ -35,6 +37,15 @@ Tempo, correlation IDs, and trace smoke checks. Error tracking and explicit
 source-map upload are documented in [`docs/error-tracking.md`](./docs/error-tracking.md).
 SonarQube Cloud and the optional local Community Build are covered in
 [`docs/sonarqube.md`](./docs/sonarqube.md).
+
+## test-data module (TypeScript)
+
+The `src/test-data` tests are TypeScript and are run through [`tsx`](https://tsx.is),
+which transpiles `.ts` on the fly: `npm run test:unit`
+(`node --import tsx --test "src/test-data/*.test.ts"`). This is the single supported
+way to run them, so results do not depend on the editor. Types are checked with
+`npm run typecheck` (`tsc --noEmit`, `strict`). Linting and formatting are done by
+Biome, which replaces ESLint and Prettier.
 
 ### 4. Run the Playwright E2E example
 
@@ -56,7 +67,7 @@ npm run test:e2e
 - `packages/exercises/__tests__` contains the exercise unit tests.
 - `tests/e2e` contains the Playwright project, fixtures, page objects, and tests.
 - `apps/web`, `packages/api-client`, and `packages/test-data` are reserved for
-  future workspaces.
+   future workspaces.
 
 The server exposes `/sample`, `/sample/hello`, and returns a JSON `404` response for unknown routes.
 

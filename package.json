@@ -22,7 +22,8 @@
         "npm": ">=11.0.0"
     },
     "scripts": {
-        "test:unit": "node --test",
+        "test:unit": "node --import tsx --test \"src/test-data/*.test.ts\"",
+        "typecheck": "tsc --noEmit -p src/test-data/tsconfig.json",
         "start": "npm run start --workspace=@jubilant-adventure/api",
         "dev:web": "npm run dev --workspace=@jubilant-adventure/web",
         "storybook": "npm run storybook --workspace=@jubilant-adventure/web",
@@ -99,7 +100,7 @@
         "prepare": "husky",
         "ci:biome": "biome ci .",
         "ci:coverage": "npm run ci:coverage --workspaces --if-present",
-        "ci": "npm run type-check && npm run type-check:e2e && npm run type-check:api && npm run type-check:resilience && npm run ci:biome && npm run ci:coverage",
+        "ci": "npm run type-check && npm run type-check:e2e && npm run type-check:api && npm run type-check:resilience && npm run typecheck && npm run ci:biome && npm run ci:coverage",
         "type-check:resilience": "tsc --noEmit -p tests/resilience/tsconfig.json"
     },
     "devDependencies": {

@@ -12,3 +12,10 @@ test('buildMany returns an array of the requested length', () => {
         "buildMany doesn't return an array of the requested length",
     );
 });
+
+test('buildMany infers User[] from buildUser', () => {
+    const users = buildMany(5, buildUser);
+
+    const email: string = users[0].email;
+    assert.equal(typeof email, 'string');
+});

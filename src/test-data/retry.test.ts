@@ -29,3 +29,10 @@ test('Retry throws an Error', async () => {
 
     assert.equal(calls, 3);
 });
+
+test('retry result type follows the action', async () => {
+    const result = await retry(async () => 'ok', { attempts: 1 });
+
+    const text: string = result;
+    assert.equal(text, 'ok');
+});

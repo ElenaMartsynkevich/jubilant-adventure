@@ -14,3 +14,8 @@ test('overrides actually override default fields', () => {
 
     assert.equal(user.country, 'FR');
 });
+
+test('overrides rejects unknown field names at compile time', () => {
+    // @ts-expect-error: typo in field name must be a compile error
+    buildUser({ usernmae: 'x' });
+});

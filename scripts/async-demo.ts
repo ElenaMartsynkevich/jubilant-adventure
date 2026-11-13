@@ -1,9 +1,11 @@
 import { setTimeout as sleep } from 'node:timers/promises';
+import type { User } from '../src/test-data/buildUser.js';
 import { buildMany, buildUser } from '../src/test-data/index.js';
 
 const users = buildMany(5, buildUser);
+type BalanceResult = { username: string; balance: number };
 
-async function fetchBalance(user) {
+async function fetchBalance(user: User): Promise<BalanceResult> {
     await sleep(200);
 
     return {
@@ -11,17 +13,17 @@ async function fetchBalance(user) {
         balance: 100,
     };
 }
-
-const sequentialResults = [];
+const sequentialResults: Array<BalanceResult> = [];
 const startSequential = performance.now();
+
 for (const user of users) {
     sequentialResults.push(await fetchBalance(user));
 }
 
 const sequentialTime = performance.now() - startSequential;
 
-process.stdout.write(`Sequential: ${Math.round(sequentialTime)} ms\n`);
-process.stdout.write(`${JSON.stringify(sequentialResults, null, 2)}\n`);
+console.log(`Sequential: ${Math.round(sequentialTime)} ms`);
+console.log(JSON.stringify(sequentialResults, null, 2));
 
 const startParallel = performance.now();
 
@@ -31,5 +33,5 @@ const parallelResults = await Promise.all(
 
 const parallelTime = performance.now() - startParallel;
 
-process.stdout.write(`Parallel: ${Math.round(parallelTime)} ms\n`);
-process.stdout.write(`${JSON.stringify(parallelResults, null, 2)}\n`);
+console.log(`Parallel: ${Math.round(parallelTime)} ms`);
+console.log(JSON.stringify(parallelResults, null, 2));

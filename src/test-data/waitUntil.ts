@@ -1,16 +1,30 @@
+type WaitUntilOptions = {
+    timeoutMs?: number;
+    intervalMs?: number;
+    message?: string;
+};
+
 export async function waitUntil(
-    predicate,
-    { timeoutMs, intervalMs, message } = {},
-) {
+    predicate: () => boolean | Promise<boolean>,
+    { timeoutMs, intervalMs, message }: WaitUntilOptions = {},
+): Promise<void> {
     if (!message) {
         throw new Error('message is required');
     }
 
-    if (!Number.isInteger(intervalMs) || intervalMs < 1) {
+    if (
+        typeof timeoutMs !== 'number' ||
+        !Number.isInteger(timeoutMs) ||
+        timeoutMs < 1
+    ) {
         throw new RangeError('timeoutMs must be a positive integer');
     }
 
-    if (!Number.isInteger(intervalMs) || intervalMs < 1) {
+    if (
+        typeof intervalMs !== 'number' ||
+        !Number.isInteger(intervalMs) ||
+        intervalMs < 1
+    ) {
         throw new RangeError('intervalMs must be a positive integer');
     }
 

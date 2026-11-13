@@ -1,6 +1,6 @@
-export function parseAmount(text) {
+export function parseAmount(text: string) {
     const noCurrency = text.replace(/[^\d.,-]/g, '');
-    let cleaned;
+    let cleaned: string;
 
     if (text.includes('€')) {
         cleaned = noCurrency.replace(/\./g, '').replace(',', '.');

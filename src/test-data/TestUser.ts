@@ -1,11 +1,16 @@
-//Класс — это шаблон для объектов, у которых есть данные и "умения".
+import type { User } from './buildUser.js';
+
 const HIGH_ROLLER_THRESHOLD = 10000;
 
 export class TestUser {
-    constructor(user) {
-        // constructor(user) запускается один раз, когда пишешь new TestUser(buildUser()).
-        // Внутри через this сохраняют данные: this.username = user.username и так далее.
+    username: string;
+    email: string;
+    password: string;
+    currency: string;
+    country: string;
+    balance: number;
 
+    constructor(user: User) {
         this.username = user.username;
         this.email = user.email;
         this.password = user.password;
