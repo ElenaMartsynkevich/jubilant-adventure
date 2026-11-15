@@ -7,5 +7,9 @@
         "moduleResolution": "NodeNext",
         "types": ["node"]
     },
-    "include": ["./**/*.ts", "../../scripts/async-demo.ts"]
+    "include": [
+        "./**/*.ts",
+        "../../scripts/async-demo.ts",
+        "../contracts/**/*.ts"
+    ]
 }
