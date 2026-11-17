@@ -28,8 +28,7 @@ export const TEST_IDS = {
     },
 } as const;
 
-type Groups = (typeof TEST_IDS)[keyof typeof TEST_IDS];
-
-type ValuesOf<T> = T extends unknown ? T[keyof T] : never;
-
-export type TestId = ValuesOf<Groups>;
+// Union of every test ID value, derived from TEST_IDS
+export type TestId = {
+    [Group in keyof typeof TEST_IDS]: (typeof TEST_IDS)[Group][keyof (typeof TEST_IDS)[Group]];
+}[keyof typeof TEST_IDS];
