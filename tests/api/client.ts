@@ -1,5 +1,5 @@
 import * as allure from 'allure-js-commons';
-import { sanitizeApiExchange } from '../../scripts/allure/sanitizer';
+import { sanitizeApiExchange } from '../../scripts/allure/sanitizer.js';
 
 export interface ApiResponse<T = unknown> {
     status: number;
@@ -149,6 +149,16 @@ export class ApiClient {
                 method: 'POST',
                 headers: { 'X-Test-Control-Key': this.controlKey },
                 json: { scenario, version: 'v1' },
+            }),
+        );
+    }
+
+    public verificationCode(
+        userId: string,
+    ): Promise<ApiResponse<{ code: string }>> {
+        return allureStep('Get verification code', () =>
+            this.request(`/__test/users/${userId}/verification-code`, {
+                headers: { 'X-Test-Control-Key': this.controlKey },
             }),
         );
     }
